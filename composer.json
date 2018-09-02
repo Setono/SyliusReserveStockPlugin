@@ -1,5 +1,5 @@
 {
-    "name": "loevgaard/SyliusReserveStockPlugin",
+    "name": "loevgaard/sylius-reserve-stock-plugin",
     "type": "sylius-plugin",
     "description": "Reserve Stock Plugin for Sylius.",
     "license": "MIT",
