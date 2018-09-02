@@ -1,8 +1,18 @@
 {
-    "name": "sylius/plugin-skeleton",
+    "name": "loevgaard/sylius-reserve-stock-plugin",
     "type": "sylius-plugin",
-    "description": "Acme example plugin for Sylius.",
+    "description": "Reserve Stock Plugin for Sylius.",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Joachim Loevgaard",
+            "email": "joachim@loevgaard.dk"
+        },
+        {
+            "name": "Stefan Doorn",
+            "email": "stefan@efectos.nl"
+        }
+    ],
     "require": {
         "php": "^7.1",
 
@@ -32,17 +42,12 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusExamplePlugin\\": "src/",
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "Loevgaard\\SyliusReserveStockPlugin\\": "src/",
+            "Tests\\Loevgaard\\SyliusReserveStockPlugin\\": "tests/"
         }
     },
     "autoload-dev": {
         "classmap": ["tests/Application/app/AppKernel.php"]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.2-dev"
-        }
     },
     "config": {
         "bin-dir": "bin"
