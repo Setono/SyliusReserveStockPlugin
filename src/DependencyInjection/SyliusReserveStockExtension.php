@@ -17,8 +17,10 @@ final class SyliusReserveStockExtension extends Extension
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
+        $container->setParameter('loevgaard_sylius_reserve_stock_plugin.ttl', $config['ttl']);
+
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
     }
 }
