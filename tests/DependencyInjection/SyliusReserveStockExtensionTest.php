@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Loevgaard\SyliusReserveStockPlugin;
+namespace Tests\Setono\SyliusReserveStockPlugin;
 
-use Loevgaard\SyliusReserveStockPlugin\DependencyInjection\SyliusReserveStockExtension;
+use Setono\SyliusReserveStockPlugin\DependencyInjection\SyliusReserveStockExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 final class SyliusReserveStockExtensionTest extends AbstractExtensionTestCase
@@ -18,13 +18,13 @@ final class SyliusReserveStockExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertContainerBuilderHasParameter('loevgaard_sylius_reserve_stock_plugin.ttl', 3600);
+        $this->assertContainerBuilderHasParameter('setono_sylius_reserve_stock_plugin.ttl', 3600);
     }
 
     public function testOtherTtl()
     {
         $this->load(['ttl' => 800]);
 
-        $this->assertContainerBuilderHasParameter('loevgaard_sylius_reserve_stock_plugin.ttl', 800);
+        $this->assertContainerBuilderHasParameter('setono_sylius_reserve_stock_plugin.ttl', 800);
     }
 }

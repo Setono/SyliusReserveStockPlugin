@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: Loevgaard\SyliusReserveStockPlugin
-        psr4_prefix: Loevgaard\SyliusReserveStockPlugin
+        namespace: Setono\SyliusReserveStockPlugin
+        psr4_prefix: Setono\SyliusReserveStockPlugin
