@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusReserveStockPlugin\Controller;
+namespace Setono\SyliusReserveStockPlugin\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;

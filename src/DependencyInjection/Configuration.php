@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusReserveStockPlugin\DependencyInjection;
+namespace Setono\SyliusReserveStockPlugin\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

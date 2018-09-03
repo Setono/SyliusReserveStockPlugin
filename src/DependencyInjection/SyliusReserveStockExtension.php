@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusReserveStockPlugin\DependencyInjection;
+namespace Setono\SyliusReserveStockPlugin\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,7 +18,7 @@ final class SyliusReserveStockExtension extends Extension
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
 
-        $container->setParameter('loevgaard_sylius_reserve_stock_plugin.ttl', $config['ttl']);
+        $container->setParameter('setono_sylius_reserve_stock_plugin.ttl', $config['ttl']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');

@@ -1,21 +1,21 @@
 # SyliusReserveStockPlugin
 
-[![License](https://img.shields.io/packagist/l/loevgaard/SyliusReserveStockPlugin.svg)](https://packagist.org/packages/loevgaard/SyliusReserveStockPlugin)
-[![Version](https://img.shields.io/packagist/v/loevgaard/SyliusReserveStockPlugin.svg)](https://packagist.org/packages/loevgaard/SyliusReserveStockPlugin)
-[![Build status on Linux](https://img.shields.io/travis/loevgaard/SyliusReserveStockPlugin/master.svg)](http://travis-ci.org/loevgaard/SyliusReserveStockPlugin)
+[![License](https://img.shields.io/packagist/l/setono/SyliusReserveStockPlugin.svg)](https://packagist.org/packages/setono/SyliusReserveStockPlugin)
+[![Version](https://img.shields.io/packagist/v/setono/SyliusReserveStockPlugin.svg)](https://packagist.org/packages/setono/SyliusReserveStockPlugin)
+[![Build status on Linux](https://img.shields.io/travis/setono/SyliusReserveStockPlugin/master.svg)](http://travis-ci.org/setono/SyliusReserveStockPlugin)
 
 ## Installation
 
 ### 1. Composer
 
-`composer require loevgaard/sylius-reserve-stock-plugin`
+`composer require setono/sylius-reserve-stock-plugin`
 
 ### 2. Load bundle
 
 Add to the bundle list in `app/AppKernel.php`:
 
 ```php
-new \Loevgaard\SyliusReserveStockPlugin\SyliusReserveStockPlugin(),
+new \Setono\SyliusReserveStockPlugin\SyliusReserveStockPlugin(),
 ```
 
 ### 3. Configuration

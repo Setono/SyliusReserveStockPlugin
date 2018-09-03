@@ -1,12 +1,12 @@
 {
-    "name": "loevgaard/sylius-reserve-stock-plugin",
+    "name": "setono/sylius-reserve-stock-plugin",
     "type": "sylius-plugin",
     "description": "Reserve Stock Plugin for Sylius.",
     "license": "MIT",
     "authors": [
         {
             "name": "Joachim Loevgaard",
-            "email": "joachim@loevgaard.dk"
+            "email": "joachim@setono.dk"
         },
         {
             "name": "Stefan Doorn",
@@ -43,8 +43,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Loevgaard\\SyliusReserveStockPlugin\\": "src/",
-            "Tests\\Loevgaard\\SyliusReserveStockPlugin\\": "tests/"
+            "Setono\\SyliusReserveStockPlugin\\": "src/",
+            "Tests\\Setono\\SyliusReserveStockPlugin\\": "tests/"
         }
     },
     "autoload-dev": {

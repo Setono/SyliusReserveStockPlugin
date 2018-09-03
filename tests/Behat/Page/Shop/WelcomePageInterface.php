@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Loevgaard\SyliusReserveStockPlugin\Behat\Page\Shop;
+namespace Tests\Setono\SyliusReserveStockPlugin\Behat\Page\Shop;
 
 use Sylius\Behat\Page\PageInterface;
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Loevgaard\SyliusReserveStockPlugin;
+namespace Tests\Setono\SyliusReserveStockPlugin;
 
-use Loevgaard\SyliusReserveStockPlugin\DependencyInjection\SyliusReserveStockExtension;
+use Setono\SyliusReserveStockPlugin\DependencyInjection\SyliusReserveStockExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 final class SyliusReserveStockExtensionTest extends AbstractExtensionTestCase
