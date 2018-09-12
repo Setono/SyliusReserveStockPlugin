@@ -1,10 +1,8 @@
-# Put your Behat suites definitions here
-
 default:
     suites:
-        greeting_customer:
+        reserve_stock:
             contexts_services:
-                - acme_sylius_example.context.ui.shop.welcome
+                #- acme_sylius_example.context.ui.shop.welcome
 
             filters:
-                tags: "@greeting_customer"
+                tags: "@reserve_stock"
