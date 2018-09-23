@@ -8,12 +8,12 @@ Feature: Verifying inventory quantity on cart summary
     Given the store operates on a single channel in "United States"
     And the store has a product "Iron Maiden T-Shirt" priced at "€12.54"
     And this product is tracked by the inventory
-    And there are 5 units of product "Iron Maiden T-Shirt" available in the inventory
+    And there are 8 units of product "Iron Maiden T-Shirt" available in the inventory
 
   @ui
   Scenario: Being unable to save a cart with product that is out of stock
     Given I have added 3 products "Iron Maiden T-Shirt" in the cart
-    And There are 2 units of product "Iron Maiden T-Shirt" reserved by other visitors
+    And 1 customers have added 5 "Iron Maiden T-Shirt" products to the cart
     When I change "Iron Maiden T-Shirt" quantity to 4
     And I update my cart
     Then I should be notified that this product cannot be updated
@@ -21,7 +21,7 @@ Feature: Verifying inventory quantity on cart summary
   @ui
   Scenario: Placing an order with products that have sufficient quantity
     Given I have added 1 products "Iron Maiden T-Shirt" in the cart
-    And There are 2 units of product "Iron Maiden T-Shirt" reserved by other visitors
+    And 2 customers have added 1 "Iron Maiden T-Shirt" products to the cart
     When I change "Iron Maiden T-Shirt" quantity to 5
     And I update my cart
     Then I should not be notified that this product cannot be updated

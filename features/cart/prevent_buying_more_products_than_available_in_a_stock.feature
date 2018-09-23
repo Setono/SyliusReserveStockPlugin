@@ -10,24 +10,26 @@ Feature: Prevent buying more products than available in a stock
     And "T-shirt Mononoke" product is tracked by the inventory
     And there are 5 units of product "T-shirt Mononoke" available in the inventory
 
-  @ui @javascript
+  @ui
   Scenario: Preventing from adding more items to the cart than it's available in stock
-    Given 5 customers have added 1 "T-shirt Mononoke" product to the cart
-    When I add 1 products "T-shirt Mononoke" to the cart
-    Then I should still be on product "T-shirt Mononoke" page
-    And I should be notified that this product does not have sufficient stock
+    Given 5 customers have added 1 "T-shirt Mononoke" products to the cart
+    When I check this product's details
+    Then I should see that it is out of stock
+    And I should be unable to add it to the cart
 
-  @ui @javascript
+  @ui
   Scenario: Preventing from adding more items to the cart than it's available in stock by adding same item twice
-    Given 2 customers have added 2 "T-shirt Mononoke" product to the cart
-    When I add 1 products "T-shirt Mononoke" to the cart
-    And I add again 1 products "T-shirt Mononoke" to the cart
-    Then I should still be on product "T-shirt Mononoke" page
-    And I should be notified that this product does not have sufficient stock
+    Given 2 customers have added 2 "T-shirt Mononoke" products to the cart
+    When I check this product's details
+    And I add 1 products "T-shirt Mononoke" to the cart
+    When I check this product's details
+    Then I should see that it is out of stock
+    And I should be unable to add it to the cart
+    And I should still be on product "T-shirt Mononoke" page
 
-  @ui @javascript
+  @ui
   Scenario: Allowing to add items to the cart if they are in stock
-    Given 3 customers have added 1 "T-shirt Mononoke" product to the cart
+    Given 2 customers have added 1 "T-shirt Mononoke" products to the cart
     When I add 3 products "T-shirt Mononoke" to the cart
     Then I should not be notified that this product does not have sufficient stock
     And I should be on my cart summary page

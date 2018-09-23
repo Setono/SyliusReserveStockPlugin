@@ -25,3 +25,14 @@ Default configuration is applied automatically. Find out which settings can be a
 ```bash
 bin/console config:dump-reference SyliusReserveStockPlugin
 ```
+
+### 4. Create your own extension of OrderItem repository
+
+https://docs.sylius.com/en/1.2/customization/repository.html
+
+For examples see:
+
+* @todo
+
+### 5. Load trait & add interface to this repository
+

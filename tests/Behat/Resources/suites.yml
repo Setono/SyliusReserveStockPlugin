@@ -20,7 +20,6 @@ default:
                 - sylius.behat.context.ui.shop.product
 
                 # Plugin
-                - setono.behat.context.ui.shop.cart
                 - setono.behat.context.setup.order
             filters:
                 tags: "@setono_reserve_stock_cart && @ui"
