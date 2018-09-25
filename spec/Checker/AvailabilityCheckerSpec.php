@@ -7,19 +7,26 @@ namespace spec\Setono\SyliusReserveStockPlugin\Checker;
 use PhpSpec\ObjectBehavior;
 use Setono\SyliusReserveStockPlugin\Checker\AvailabilityChecker;
 use Setono\SyliusReserveStockPlugin\Repository\InCartQuantityForProductVariantOrderItemRepositoryAwareInterface;
+use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Inventory\Checker\AvailabilityChecker as DecoratedAvailabilityChecker;
 use Sylius\Component\Inventory\Checker\AvailabilityCheckerInterface;
 use Sylius\Component\Inventory\Model\StockableInterface;
+use Sylius\Component\Order\Context\CartContextInterface;
 
 final class AvailabilityCheckerSpec extends ObjectBehavior
 {
     function let(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        CartContextInterface $cartContext,
+        OrderInterface $order
     ): void {
+        $cartContext->getCart()->willReturn($order);
+
         $this->beConstructedWith(
             new DecoratedAvailabilityChecker(),
-            $inCartQuantityForProductVariantOrderItemRepository
+            $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+            $cartContext
         );
     }
 
@@ -103,11 +110,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_available_if_on_hand_quantity_is_greater_than_0(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(0);
 
         $productVariant->isTracked()->willReturn(true);
@@ -118,11 +127,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_not_available_if_on_hand_quantity_is_equal_to_0(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(0);
 
         $productVariant->isTracked()->willReturn(true);
@@ -133,11 +144,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_available_if_on_hold_quantity_is_less_than_on_hand_and_stock_reserved(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(1);
 
         $productVariant->isTracked()->willReturn(true);
@@ -148,11 +161,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_not_available_if_on_hold_quantity_is_same_as_on_hand_and_stock_reserved(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(2);
 
         $productVariant->isTracked()->willReturn(true);
@@ -163,11 +178,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_sufficient_if_on_hand_minus_on_hold_quantity_is_greater_than_the_required_quantity_and_stock_reserved(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(2);
 
         $productVariant->isTracked()->willReturn(true);
@@ -178,11 +195,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_sufficient_if_on_hand_minus_on_hold_quantity_is_equal_to_the_required_quantity(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(0);
 
         $productVariant->isTracked()->willReturn(true);
@@ -193,11 +212,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_insufficient_if_stock_is_all_reserved(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(5);
 
         $productVariant->isTracked()->willReturn(true);
@@ -208,11 +229,13 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     }
 
     function it_recognizes_stockable_as_available_or_sufficent_if_it_is_not_tracked(
-        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantOrderItemRepository,
-        ProductVariantInterface $productVariant
+        InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+        ProductVariantInterface $productVariant,
+        OrderInterface $order
     ): void {
-        $inCartQuantityForProductVariantOrderItemRepository->inCartQuantityForProductVariant(
-            $productVariant
+        $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
+            $productVariant,
+            $order
         )->willReturn(2);
 
         $productVariant->isTracked()->willReturn(false);

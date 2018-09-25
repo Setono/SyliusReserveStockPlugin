@@ -32,4 +32,34 @@ trait ProductVariantCartOrderItem
 
         return (int) $result;
     }
+
+    public function inCartQuantityForProductVariantExcludingOrder(
+        ProductVariantInterface $productVariant,
+        ?OrderInterface $order
+    ): int {
+        /** @var QueryBuilder $qb */
+        $qb = $this->createQueryBuilder('o');
+
+        $qb = $qb
+            ->select('SUM(o.quantity) AS quantity')
+            ->innerJoin('o.order', 'cart')
+            ->andWhere('cart.state = :state')
+            ->andWhere('o.variant = :variant')
+            ->setParameter('state', OrderInterface::STATE_CART)
+            ->setParameter('variant', $productVariant);
+
+        if (null !== $order && null !== $order->getId()) {
+            $qb = $qb
+                ->andWhere('o.order != :order')
+                ->setParameter('order', $order);
+        }
+
+        $result = $qb->getQuery()->getSingleScalarResult();
+
+        if (null === $result) {
+            return 0;
+        }
+
+        return (int) $result;
+    }
 }
