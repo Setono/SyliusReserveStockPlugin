@@ -19,7 +19,7 @@ class ProductVariantCartOrderItemSpec extends ObjectBehavior
     {
         $classMetadata->name = 'order';
 
-        $this->beAnInstanceOf('Setono\SyliusReserveStockPlugin\Repository\Stubs\ProductVariantCartOrderItemStub');
+        $this->beAnInstanceOf('Setono\SyliusReserveStockPlugin\Repository\OrderItemRepository');
         $this->beConstructedWith($em, $classMetadata);
     }
 

@@ -75,4 +75,4 @@ sylius_order:
     resources:
         order_item:
             classes:
-                repository: TestApp\Setono\SyliusReserveStockPlugin\Repository\OrderItemRepository
+                repository: Setono\SyliusReserveStockPlugin\Repository\OrderItemRepository

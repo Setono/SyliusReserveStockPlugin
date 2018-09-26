@@ -44,8 +44,7 @@
     "autoload": {
         "psr-4": {
             "Setono\\SyliusReserveStockPlugin\\": "src/",
-            "Tests\\Setono\\SyliusReserveStockPlugin\\": "tests/",
-            "TestApp\\Setono\\SyliusReserveStockPlugin\\": "tests/Application/src/"
+            "Tests\\Setono\\SyliusReserveStockPlugin\\": "tests/"
         }
     },
     "autoload-dev": {
@@ -56,10 +55,10 @@
     },
     "scripts": {
         "fix": [
-            "bin/ecs check --ansi --no-progress-bar spec src tests/Application/src --fix"
+            "bin/ecs check --ansi --no-progress-bar spec src --fix"
         ],
         "analyse": [
-            "bin/ecs check --ansi --no-progress-bar spec src tests/Application/src",
+            "bin/ecs check --ansi --no-progress-bar spec src",
             "bin/phpstan.phar analyse -c phpstan.neon -l max src/"
         ]
     }
