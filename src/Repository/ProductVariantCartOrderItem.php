@@ -10,6 +10,9 @@ use Sylius\Component\Order\Model\OrderInterface;
 
 trait ProductVariantCartOrderItem
 {
+    /**
+     * @see InCartQuantityForProductVariantOrderItemRepositoryAwareInterface::inCartQuantityForProductVariantExcludingOrder()
+     */
     public function inCartQuantityForProductVariantExcludingOrder(
         ProductVariantInterface $productVariant,
         ?OrderInterface $order
@@ -25,6 +28,10 @@ trait ProductVariantCartOrderItem
         return $this->produceSingleScalarQueryIntegerResult($qb);
     }
 
+    /**
+     * Create the base query without taking in account any order. It looks for order items from orders
+     * that are marked as a 'cart' and where the product variant is the same as requested.
+     */
     private function createOrderItemVariantQueryBuilder(ProductVariantInterface $productVariant): QueryBuilder
     {
         /** @var QueryBuilder $qb */
@@ -39,6 +46,11 @@ trait ProductVariantCartOrderItem
             ->setParameter('variant', $productVariant);
     }
 
+    /**
+     * Takes the query builder, transform it into a query and makes sure in all situations
+     * an integer is being returned. In case the query does not result anything, `null` is returned
+     * which will be transformed into the integer 0.
+     */
     private function produceSingleScalarQueryIntegerResult(QueryBuilder $queryBuilder): int
     {
         $result = $queryBuilder->getQuery()->getSingleScalarResult();

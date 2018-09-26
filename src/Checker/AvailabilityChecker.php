@@ -39,6 +39,9 @@ final class AvailabilityChecker implements AvailabilityCheckerInterface
         $this->cartContext = $cartContext;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isStockAvailable(StockableInterface $stockable): bool
     {
         /** @var ProductVariantInterface $stockable */
@@ -70,6 +73,13 @@ final class AvailabilityChecker implements AvailabilityCheckerInterface
         return $quantity <= $stockAvailable;
     }
 
+    /**
+     * Tries to fetch the current cart and return it in that case. If not, null will be returned.
+     *
+     * A try/catch block is used because the underlying cart context throws an exception in case there is
+     * no cart found and a cart will not be generated. In all situations where no cart can be found, we should
+     * be sure `null` is returned.
+     */
     private function getCart(): ?OrderInterface
     {
         try {

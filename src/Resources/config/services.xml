@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <!-- Plugin services -->
+        <!--
+            Decorates the default availability checker, taking in account the current cart context. It should
+            take this in account, so for example changes in the cart (on the cart page) should take in account
+            the full amount requested without the items that were already reserved for that customer (else they
+            would not be available for the same customer again).
+        -->
         <service id="setono.reserve_stock_plugin.availability_checker.default" class="Setono\SyliusReserveStockPlugin\Checker\AvailabilityChecker" decorates="sylius.availability_checker.default">
             <argument type="service" id="setono.reserve_stock_plugin.availability_checker.default.inner" />
             <argument type="service" id="sylius.repository.order_item" />
             <argument type="service" id="sylius.context.cart" />
         </service>
 
+        <!--
+            Adds a new availability checker, using an empty cart. This can be useful for example in
+            templates to make sure the requested quantity can be added on top of a current cart. Therefore
+            it should not exclude the current cart contents from the checks, as these items are already
+            reserved.
+        -->
         <service id="setono.reserve_stock_plugin.availability_checker.no_cart" class="Setono\SyliusReserveStockPlugin\Checker\AvailabilityChecker">
             <argument type="service" id="sylius.availability_checker.default" />
             <argument type="service" id="sylius.repository.order_item" />
             <argument type="service" id="sylius.context.cart.new" />
         </service>
 
-        <!-- Sylius overrides -->
+        <!--
+            Inject the above mentioned new availability checker into the inventory template helper, to make
+            sure proper availability checks are shown to the customer (is it possible to add more quantity
+            on the cart).
+        -->
         <service id="sylius.templating.helper.inventory" class="Sylius\Bundle\InventoryBundle\Templating\Helper\InventoryHelper">
             <argument type="service" id="setono.reserve_stock_plugin.availability_checker.no_cart" />
             <tag name="templating.helper" alias="sylius_inventory" />
