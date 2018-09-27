@@ -25,3 +25,40 @@ Default configuration is applied automatically. Find out which settings can be a
 ```bash
 bin/console config:dump-reference SyliusReserveStockPlugin
 ```
+
+### 4. Include repository
+
+#### Option 1: load repository via config
+
+This option applies if you didn't extend the `OrderItem` repository yet.
+
+```yaml
+sylius_order:
+    resources:
+        order_item:
+            classes:
+                repository: Setono\SyliusReserveStockPlugin\Repository\OrderItemRepository
+```
+
+#### Option 2: include repository trait in your repository
+
+This option applies if you extended the `OrderItem` repository already. Add the trait to your repository class as shown in the
+example below. The package also comes with an interface (`InCartQuantityForProductVariantOrderItemRepositoryAwareInterface`) which you can
+optionally load.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace AppBundle\Repository\OrderItemRepository;
+
+use Setono\SyliusReserveStockPlugin\Repository\InCartQuantityForProductVariantOrderItemRepositoryAwareInterface;
+use Setono\SyliusReserveStockPlugin\Repository\ProductVariantCartOrderItem;
+use Sylius\Bundle\OrderBundle\Doctrine\ORM\OrderItemRepository as BaseOrderItemRepository;
+
+final class OrderItemRepository extends BaseOrderItemRepository implements InCartQuantityForProductVariantOrderItemRepositoryAwareInterface
+{
+    use ProductVariantCartOrderItem; // Load trait here
+}
+```

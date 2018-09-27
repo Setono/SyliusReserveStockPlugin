@@ -70,3 +70,9 @@ liip_imagine:
             web_path:
                 web_root: "%kernel.project_dir%/web"
                 cache_prefix: "media/cache"
+
+sylius_order:
+    resources:
+        order_item:
+            classes:
+                repository: Setono\SyliusReserveStockPlugin\Repository\OrderItemRepository

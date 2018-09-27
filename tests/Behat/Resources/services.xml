@@ -2,15 +2,18 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <!-- Put your Behat services here -->
-
-        <service id="acme_sylius_example.context.ui.shop.welcome" class="Tests\Setono\SyliusReserveStockPlugin\Behat\Context\Ui\Shop\WelcomeContext">
-            <argument type="service" id="acme_sylius_example.page.shop.static_welcome" />
-            <argument type="service" id="acme_sylius_example.page.shop.dynamic_welcome" />
+        <service id="setono.behat.context.setup.order" class="Tests\Setono\SyliusReserveStockPlugin\Behat\Context\Setup\OrderContext">
+            <argument type="service" id="sylius.behat.shared_storage" />
+            <argument type="service" id="__symfony__.sylius.repository.order" />
+            <argument type="service" id="__symfony__.sylius.factory.order" />
+            <argument type="service" id="__symfony__.sylius.factory.order_item" />
+            <argument type="service" id="__symfony__.sylius.order_item_quantity_modifier" />
+            <argument type="service" id="__symfony__.sylius.factory.customer" />
+            <argument type="service" id="__symfony__.sylius.repository.customer" />
+            <argument type="service" id="__symfony__.doctrine.orm.entity_manager" />
+            <argument type="service" id="__symfony__.sm.factory" />
+            <argument type="service" id="__symfony__.sylius.product_variant_resolver.default" />
             <tag name="fob.context_service" />
         </service>
-
-        <service id="acme_sylius_example.page.shop.static_welcome" class="Tests\Setono\SyliusReserveStockPlugin\Behat\Page\Shop\StaticWelcomePage" parent="sylius.behat.symfony_page" public="false" />
-        <service id="acme_sylius_example.page.shop.dynamic_welcome" class="Tests\Setono\SyliusReserveStockPlugin\Behat\Page\Shop\DynamicWelcomePage" parent="sylius.behat.symfony_page" public="false" />
     </services>
 </container>

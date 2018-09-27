@@ -52,5 +52,14 @@
     },
     "config": {
         "bin-dir": "bin"
+    },
+    "scripts": {
+        "fix": [
+            "bin/ecs check --ansi --no-progress-bar spec src --fix"
+        ],
+        "analyse": [
+            "bin/ecs check --ansi --no-progress-bar spec src",
+            "bin/phpstan.phar analyse -c phpstan.neon -l max src/"
+        ]
     }
 }

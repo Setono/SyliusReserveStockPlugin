@@ -1,10 +1,25 @@
-# Put your Behat suites definitions here
-
 default:
     suites:
-        greeting_customer:
+        setono_reserve_stock_cart_ui:
             contexts_services:
-                - acme_sylius_example.context.ui.shop.welcome
+                # Sylius
+                - sylius.behat.context.hook.doctrine_orm
 
+                - sylius.behat.context.transform.product
+                - sylius.behat.context.transform.channel
+                - sylius.behat.context.transform.lexical
+                - sylius.behat.context.transform.shared_storage
+
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.product
+                - sylius.behat.context.setup.order
+                - sylius.behat.context.setup.customer
+
+                - sylius.behat.context.ui.channel
+                - sylius.behat.context.ui.shop.cart
+                - sylius.behat.context.ui.shop.product
+
+                # Plugin
+                - setono.behat.context.setup.order
             filters:
-                tags: "@greeting_customer"
+                tags: "@setono_reserve_stock_cart && @ui"
