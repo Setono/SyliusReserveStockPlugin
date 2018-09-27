@@ -26,6 +26,15 @@ Default configuration is applied automatically. Find out which settings can be a
 bin/console config:dump-reference SyliusReserveStockPlugin
 ```
 
+The default configuration is:
+
+```yaml
+sylius_reserve_stock_plugin:
+
+    # Define the Time To Live (TTL) for a product reservation.
+    ttl:                  3600 # Example: 1800
+```
+
 ### 4. Include repository
 
 #### Option 1: load repository via config
