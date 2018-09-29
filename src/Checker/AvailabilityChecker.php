@@ -25,6 +25,11 @@ final class AvailabilityChecker implements AvailabilityCheckerInterface
     private $repository;
 
     /**
+     * @var int
+     */
+    private $cartTtl;
+
+    /**
      * @var CartContextInterface
      */
     private $cartContext;
@@ -32,10 +37,12 @@ final class AvailabilityChecker implements AvailabilityCheckerInterface
     public function __construct(
         AvailabilityCheckerInterface $availabilityChecker,
         InCartQuantityForProductVariantOrderItemRepositoryAwareInterface $repository,
+        int $cartTtl,
         CartContextInterface $cartContext
     ) {
         $this->availabilityChecker = $availabilityChecker;
         $this->repository = $repository;
+        $this->cartTtl = $cartTtl;
         $this->cartContext = $cartContext;
     }
 
@@ -68,7 +75,7 @@ final class AvailabilityChecker implements AvailabilityCheckerInterface
 
         $stockAvailable = $stockable->getOnHand() -
             $stockable->getOnHold() -
-            $this->repository->inCartQuantityForProductVariantExcludingOrder($stockable, $this->getCart());
+            $this->repository->inCartQuantityForProductVariantExcludingOrder($stockable, $this->cartTtl, $this->getCart());
 
         return $quantity <= $stockAvailable;
     }

@@ -18,5 +18,5 @@ interface InCartQuantityForProductVariantOrderItemRepositoryAwareInterface
      * customer to add (e.g. adding a single item) or whether the full amount (e.g. on cart amount change)
      * is available. In the latter case you would want to have the current customer's cart discarded.
      */
-    public function inCartQuantityForProductVariantExcludingOrder(ProductVariantInterface $productVariant, ?OrderInterface $order): int;
+    public function inCartQuantityForProductVariantExcludingOrder(ProductVariantInterface $productVariant, int $ttl, ?OrderInterface $order): int;
 }

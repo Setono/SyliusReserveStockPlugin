@@ -21,5 +21,7 @@ default:
 
                 # Plugin
                 - setono.behat.context.setup.order
+                - setono.behat.context.ui.shop.sleep
+                - setono.behat.context.ui.shop.product
             filters:
                 tags: "@setono_reserve_stock_cart && @ui"

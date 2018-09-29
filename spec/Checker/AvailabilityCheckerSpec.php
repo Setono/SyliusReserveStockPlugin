@@ -26,6 +26,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
         $this->beConstructedWith(
             new DecoratedAvailabilityChecker(),
             $inCartQuantityForProductVariantExcludingOrderOrderItemRepository,
+            $ttl = 3600,
             $cartContext
         );
     }
@@ -116,6 +117,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(0);
 
@@ -133,6 +135,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(0);
 
@@ -150,6 +153,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(1);
 
@@ -167,6 +171,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(2);
 
@@ -184,6 +189,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(2);
 
@@ -201,6 +207,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(0);
 
@@ -218,6 +225,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(5);
 
@@ -235,6 +243,7 @@ final class AvailabilityCheckerSpec extends ObjectBehavior
     ): void {
         $inCartQuantityForProductVariantExcludingOrderOrderItemRepository->inCartQuantityForProductVariantExcludingOrder(
             $productVariant,
+            3600,
             $order
         )->willReturn(2);
 

@@ -15,5 +15,16 @@
             <argument type="service" id="__symfony__.sylius.product_variant_resolver.default" />
             <tag name="fob.context_service" />
         </service>
+
+        <service id="setono.behat.context.ui.shop.sleep" class="Tests\Setono\SyliusReserveStockPlugin\Behat\Context\Ui\Shop\SleepContext">
+            <tag name="fob.context_service" />
+        </service>
+
+        <service id="setono.behat.context.ui.shop.product" class="Tests\Setono\SyliusReserveStockPlugin\Behat\Context\Ui\Shop\ProductContext">
+            <argument type="service" id="sylius.behat.page.shop.product.show" />
+            <argument type="service" id="sylius.behat.page.shop.product.index" />
+            <argument type="service" id="sylius.behat.page.shop.product_reviews.index" />
+            <tag name="fob.context_service" />
+        </service>
     </services>
 </container>
