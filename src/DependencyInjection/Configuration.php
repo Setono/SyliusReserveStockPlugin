@@ -25,7 +25,7 @@ final class Configuration implements ConfigurationInterface
                 ->integerNode('ttl')
                     ->defaultValue(self::DEFAULT_TTL)
                     ->example(1800)
-                    ->info('Define the Time To Live (TTL) for a product reservation.')
+                    ->info('Define the Time To Live (TTL) in seconds for a product reservation.')
                 ->end()
             ->end()
         ;
