@@ -76,3 +76,6 @@ sylius_order:
         order_item:
             classes:
                 repository: Setono\SyliusReserveStockPlugin\Repository\OrderItemRepository
+
+sylius_reserve_stock:
+    ttl: 15

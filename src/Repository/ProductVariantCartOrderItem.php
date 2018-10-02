@@ -15,6 +15,7 @@ trait ProductVariantCartOrderItem
      */
     public function inCartQuantityForProductVariantExcludingOrder(
         ProductVariantInterface $productVariant,
+        int $ttl,
         ?OrderInterface $order
     ): int {
         $qb = $this->createOrderItemVariantQueryBuilder($productVariant);
@@ -23,6 +24,12 @@ trait ProductVariantCartOrderItem
             $qb = $qb
                 ->andWhere('o.order != :order')
                 ->setParameter('order', $order);
+        }
+
+        if ($ttl > 0) {
+            $qb = $qb
+                ->andWhere('cart.updatedAt > :expireDate')
+                ->setParameter('expireDate', new \DateTime(sprintf('-%d second', $ttl)));
         }
 
         return $this->produceSingleScalarQueryIntegerResult($qb);
