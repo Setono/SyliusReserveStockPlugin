@@ -1,7 +1,7 @@
 # SyliusReserveStockPlugin
 
-[![License](https://img.shields.io/packagist/l/setono/SyliusReserveStockPlugin.svg)](https://packagist.org/packages/setono/SyliusReserveStockPlugin)
-[![Version](https://img.shields.io/packagist/v/setono/SyliusReserveStockPlugin.svg)](https://packagist.org/packages/setono/SyliusReserveStockPlugin)
+[![License](https://img.shields.io/packagist/l/setono/sylius-reserve-stock-plugin.svg)](https://packagist.org/packages/setono/sylius-reserve-stock-plugin)
+[![Version](https://img.shields.io/packagist/v/setono/sylius-reserve-stock-plugin.svg)](https://packagist.org/packages/setono/sylius-reserve-stock-plugin)
 [![Build status on Linux](https://img.shields.io/travis/setono/SyliusReserveStockPlugin/master.svg)](http://travis-ci.org/setono/SyliusReserveStockPlugin)
 
 ## Installation
