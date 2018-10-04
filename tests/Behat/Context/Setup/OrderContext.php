@@ -71,7 +71,6 @@ final class OrderContext implements Context
         ProductVariantResolverInterface $variantResolver
     ) {
         $this->sharedStorage = $sharedStorage;
-        $this->orderRepository = $orderRepository;
         $this->orderFactory = $orderFactory;
         $this->orderItemFactory = $orderItemFactory;
         $this->itemQuantityModifier = $itemQuantityModifier;
