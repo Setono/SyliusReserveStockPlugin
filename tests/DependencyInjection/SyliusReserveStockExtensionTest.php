@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Setono\SyliusReserveStockPlugin;
 
-use Setono\SyliusReserveStockPlugin\DependencyInjection\SyliusReserveStockExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Setono\SyliusReserveStockPlugin\DependencyInjection\SyliusReserveStockExtension;
 
 final class SyliusReserveStockExtensionTest extends AbstractExtensionTestCase
 {
