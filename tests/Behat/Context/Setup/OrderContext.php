@@ -6,14 +6,12 @@ namespace Tests\Setono\SyliusReserveStockPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
-use SM\Factory\FactoryInterface as StateMachineFactoryInterface;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
-use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Sylius\Component\Customer\Model\CustomerInterface;
 use Sylius\Component\Order\Modifier\OrderItemQuantityModifierInterface;
 use Sylius\Component\Product\Resolver\ProductVariantResolverInterface;
@@ -26,11 +24,6 @@ final class OrderContext implements Context
      * @var SharedStorageInterface
      */
     private $sharedStorage;
-
-    /**
-     * @var OrderRepositoryInterface
-     */
-    private $orderRepository;
 
     /**
      * @var FactoryInterface
@@ -63,48 +56,27 @@ final class OrderContext implements Context
     private $objectManager;
 
     /**
-     * @var StateMachineFactoryInterface
-     */
-    private $stateMachineFactory;
-
-    /**
      * @var ProductVariantResolverInterface
      */
     private $variantResolver;
 
-    /**
-     * @param SharedStorageInterface $sharedStorage
-     * @param OrderRepositoryInterface $orderRepository
-     * @param FactoryInterface $orderFactory
-     * @param FactoryInterface $orderItemFactory
-     * @param OrderItemQuantityModifierInterface $itemQuantityModifier
-     * @param FactoryInterface $customerFactory
-     * @param RepositoryInterface $customerRepository
-     * @param ObjectManager $objectManager
-     * @param StateMachineFactoryInterface $stateMachineFactory
-     * @param ProductVariantResolverInterface $variantResolver
-     */
     public function __construct(
         SharedStorageInterface $sharedStorage,
-        OrderRepositoryInterface $orderRepository,
         FactoryInterface $orderFactory,
         FactoryInterface $orderItemFactory,
         OrderItemQuantityModifierInterface $itemQuantityModifier,
         FactoryInterface $customerFactory,
         RepositoryInterface $customerRepository,
         ObjectManager $objectManager,
-        StateMachineFactoryInterface $stateMachineFactory,
         ProductVariantResolverInterface $variantResolver
     ) {
         $this->sharedStorage = $sharedStorage;
-        $this->orderRepository = $orderRepository;
         $this->orderFactory = $orderFactory;
         $this->orderItemFactory = $orderItemFactory;
         $this->itemQuantityModifier = $itemQuantityModifier;
         $this->customerFactory = $customerFactory;
         $this->customerRepository = $customerRepository;
         $this->objectManager = $objectManager;
-        $this->stateMachineFactory = $stateMachineFactory;
         $this->variantResolver = $variantResolver;
     }
 
@@ -112,11 +84,11 @@ final class OrderContext implements Context
      * @Given :numberOfCustomers customers have added :quantity :product products to the cart
      */
     public function customersHaveAddedProductToTheCart(
-        $numberOfCustomers,
-        $quantity,
+        string $numberOfCustomers,
+        string $quantity,
         ProductInterface $product
     ) {
-        $customers = $this->generateCustomers($numberOfCustomers);
+        $customers = $this->generateCustomers((int)$numberOfCustomers);
         $variant = $this->variantResolver->getVariant($product);
 
         for ($i = 0; $i < $numberOfCustomers; ++$i) {
@@ -130,8 +102,12 @@ final class OrderContext implements Context
         $this->objectManager->flush();
     }
 
-    private function addVariantToOrder(OrderInterface $order, ProductVariantInterface $variant, int $quantity, $price)
-    {
+    private function addVariantToOrder(
+        OrderInterface $order,
+        ProductVariantInterface $variant,
+        int $quantity,
+        int $price
+    ) {
         /** @var OrderItemInterface $item */
         $item = $this->orderItemFactory->createNew();
         $item->setVariant($variant);
@@ -142,18 +118,11 @@ final class OrderContext implements Context
         $order->addItem($item);
     }
 
-    /**
-     * @param CustomerInterface $customer
-     * @param ChannelInterface|null $channel
-     * @param string|null $localeCode
-     *
-     * @return OrderInterface
-     */
     private function createCart(
         CustomerInterface $customer,
         ChannelInterface $channel = null,
-        $localeCode = null
-    ) {
+        ?string $localeCode = null
+    ): OrderInterface {
         /** @var OrderInterface $order */
         $order = $this->orderFactory->createNew();
 
@@ -166,11 +135,9 @@ final class OrderContext implements Context
     }
 
     /**
-     * @param int $count
-     *
      * @return CustomerInterface[]
      */
-    private function generateCustomers($count)
+    private function generateCustomers(int $count): array
     {
         $customers = [];
 

@@ -15,9 +15,8 @@ final class ProductContext implements Context
      */
     private $showPage;
 
-    public function __construct(
-        ShowPageInterface $showPage
-    ) {
+    public function __construct(ShowPageInterface $showPage)
+    {
         $this->showPage = $showPage;
     }
 
