@@ -10,7 +10,7 @@
         <service id="setono.reserve_stock_plugin.availability_checker.default" class="Setono\SyliusReserveStockPlugin\Checker\AvailabilityChecker" decorates="sylius.availability_checker.default">
             <argument type="service" id="setono.reserve_stock_plugin.availability_checker.default.inner" />
             <argument type="service" id="sylius.repository.order_item" />
-            <argument>%setono_sylius_reserve_stock_plugin.ttl%</argument>
+            <argument>%setono_sylius_reserve_stock.ttl%</argument>
             <argument type="service" id="sylius.context.cart" />
         </service>
 
@@ -23,7 +23,7 @@
         <service id="setono.reserve_stock_plugin.availability_checker.no_cart" class="Setono\SyliusReserveStockPlugin\Checker\AvailabilityChecker">
             <argument type="service" id="sylius.availability_checker.default" />
             <argument type="service" id="sylius.repository.order_item" />
-            <argument>%setono_sylius_reserve_stock_plugin.ttl%</argument>
+            <argument>%setono_sylius_reserve_stock.ttl%</argument>
             <argument type="service" id="sylius.context.cart.new" />
         </service>
 

@@ -18,7 +18,7 @@ final class SyliusReserveStockExtension extends Extension
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
 
-        $container->setParameter('setono_sylius_reserve_stock_plugin.ttl', $config['ttl']);
+        $container->setParameter('setono_sylius_reserve_stock.ttl', $config['ttl']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');

@@ -17,7 +17,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sylius_reserve_stock_plugin');
+        $rootNode = $treeBuilder->root('sylius_reserve_stock');
 
         $rootNode
             ->addDefaultsIfNotSet()
