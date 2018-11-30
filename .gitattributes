@@ -10,4 +10,5 @@
 /easy-coding-standard.yml   export-ignore
 /phpspec.yml.dist           export-ignore
 /phpstan.neon               export-ignore
+/phpunit.xml.dist           export-ignore
 /README.md                  export-ignore
