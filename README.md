@@ -1,8 +1,9 @@
 # SyliusReserveStockPlugin
 
-[![License](https://img.shields.io/packagist/l/setono/sylius-reserve-stock-plugin.svg)](https://packagist.org/packages/setono/sylius-reserve-stock-plugin)
-[![Version](https://img.shields.io/packagist/v/setono/sylius-reserve-stock-plugin.svg)](https://packagist.org/packages/setono/sylius-reserve-stock-plugin)
-[![Build status on Linux](https://img.shields.io/travis/Setono/SyliusReserveStockPlugin/master.svg)](http://travis-ci.org/Setono/SyliusReserveStockPlugin)
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE)
+[![Build Status][ico-travis]][link-travis]
+[![Quality Score][ico-code-quality]][link-code-quality]
 
 ## Installation
 
@@ -71,3 +72,12 @@ final class OrderItemRepository extends BaseOrderItemRepository implements InCar
     use ProductVariantCartOrderItem; // Load trait here
 }
 ```
+
+[ico-version]: https://img.shields.io/packagist/v/setono/sylius-reserve-stock-plugin.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Setono/SyliusReserveStockPlugin/master.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusReserveStockPlugin.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/setono/sylius-reserve-stock-plugin
+[link-travis]: https://travis-ci.org/Setono/SyliusReserveStockPlugin
+[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusReserveStockPlugin
