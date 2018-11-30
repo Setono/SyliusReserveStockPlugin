@@ -53,7 +53,12 @@
     },
     "scripts": {
         "check-style": "vendor/bin/ecs check --ansi --no-progress-bar spec src",
-        "fix": "bin/ecs check --ansi --no-progress-bar spec src --fix",
-        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src/"
+        "fix": "vendor/bin/ecs check --ansi --no-progress-bar spec src --fix",
+        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src/",
+        "phpunit": "vendor/bin/phpunit",
+        "phpspec": "vendor/bin/phpspec run",
+        "test": [
+            "@phpunit", "@phpspec"
+        ]
     }
 }

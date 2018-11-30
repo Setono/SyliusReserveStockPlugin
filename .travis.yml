@@ -69,8 +69,9 @@ before_script:
 
 script:
     - composer validate --strict
-    - bin/ecs check --ansi --no-progress-bar spec src
-    - bin/phpstan.phar analyse -c phpstan.neon -l max src/
+    - composer check-style
+    - composer analyse
+    - composer test
 
     - bin/phpunit
     - bin/phpspec run
