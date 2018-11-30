@@ -37,7 +37,7 @@
         "phpstan/phpstan-shim": "^0.10",
         "phpstan/phpstan-symfony": "^0.10",
         "phpstan/phpstan-webmozart-assert": "^0.10",
-        "phpunit/phpunit": "^6.5|^7.0",
+        "roave/security-advisories": "dev-master",
         "sylius-labs/coding-standard": "^2.0"
     },
     "prefer-stable": true,
@@ -50,16 +50,9 @@
     "autoload-dev": {
         "classmap": ["tests/Application/app/AppKernel.php"]
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "scripts": {
-        "fix": [
-            "bin/ecs check --ansi --no-progress-bar spec src --fix"
-        ],
-        "analyse": [
-            "bin/ecs check --ansi --no-progress-bar spec src",
-            "bin/phpstan.phar analyse -c phpstan.neon -l max src/"
-        ]
+        "check-style": "vendor/bin/ecs check --ansi --no-progress-bar spec src",
+        "fix": "bin/ecs check --ansi --no-progress-bar spec src --fix",
+        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src/"
     }
 }
