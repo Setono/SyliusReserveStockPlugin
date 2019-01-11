@@ -55,9 +55,6 @@
             "Tests\\Setono\\SyliusReserveStockPlugin\\": "tests/"
         }
     },
-    "autoload-dev": {
-        "classmap": ["tests/Application/app/AppKernel.php"]
-    },
     "scripts": {
         "check-style": "vendor/bin/ecs check --ansi --no-progress-bar spec src",
         "fix": "vendor/bin/ecs check --ansi --no-progress-bar spec src --fix",
