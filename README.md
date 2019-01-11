@@ -13,10 +13,16 @@
 
 ### 2. Load bundle
 
-Add to the bundle list in `app/AppKernel.php`:
+Add to the bundle list in `config/bundles.php`:
 
 ```php
-new \Setono\SyliusReserveStockPlugin\SyliusReserveStockPlugin(),
+<?php
+
+return [
+    // ...
+    Setono\SyliusReserveStockPlugin\SetonoSyliusReserveStockPlugin::class => ['all' => true],
+    // ...
+];
 ```
 
 ### 3. Configuration
@@ -24,13 +30,13 @@ new \Setono\SyliusReserveStockPlugin\SyliusReserveStockPlugin(),
 Default configuration is applied automatically. Find out which settings can be adjusted by running:
 
 ```bash
-bin/console config:dump-reference SyliusReserveStockPlugin
+bin/console config:dump-reference SetonoSyliusReserveStockPlugin
 ```
 
 The default configuration is:
 
 ```yaml
-sylius_reserve_stock:
+setono_sylius_reserve_stock:
 
     # Define the Time To Live (TTL) for a product reservation.
     ttl:                  3600 # Example: 1800
@@ -61,7 +67,7 @@ optionally load.
 
 declare(strict_types=1);
 
-namespace AppBundle\Repository\OrderItemRepository;
+namespace App\Repository\OrderItemRepository;
 
 use Setono\SyliusReserveStockPlugin\Repository\InCartQuantityForProductVariantOrderItemRepositoryAwareInterface;
 use Setono\SyliusReserveStockPlugin\Repository\ProductVariantCartOrderItem;
