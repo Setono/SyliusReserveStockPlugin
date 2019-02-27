@@ -1,7 +1,7 @@
 default:
     suites:
-        setono_reserve_stock_cart_ui:
-            contexts_services:
+        setono_reserve_stock_cart:
+            contexts:
                 # Sylius
                 - sylius.behat.context.hook.doctrine_orm
 
