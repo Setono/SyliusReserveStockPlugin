@@ -5,6 +5,8 @@
 [![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
+This plugin will reserve items in your customers' carts in a given amount of time.
+
 ## Installation
 
 ### 1. Composer
@@ -39,7 +41,7 @@ The default configuration is:
 setono_sylius_reserve_stock:
 
     # Define the Time To Live (TTL) for a product reservation.
-    ttl:                  3600 # Example: 1800
+    ttl: 3600 # Example: 1800
 ```
 
 ### 4. Include repository
