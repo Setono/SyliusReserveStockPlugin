@@ -2,6 +2,17 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <!--
+            Adds a listener on kernel.terminate to keep the order.updatedAt field updated on each pageview.
+            This makes sure the order never expires as long as the customer keeps browsing the shop, which
+            in turns keeps the products in the cart reserved.
+        -->
+        <service id="Setono\SyliusReserveStockPlugin\Listener\UpdateCartOnPageviewListener">
+            <argument type="service" id="sylius.context.cart" />
+            <argument type="service" id="sylius.manager.order" />
+            <tag name="kernel.event_listener" event="kernel.terminate" />
+        </service>
+
+        <!--
             Decorates the default availability checker, taking in account the current cart context. It should
             take this in account, so for example changes in the cart (on the cart page) should take in account
             the full amount requested without the items that were already reserved for that customer (else they
